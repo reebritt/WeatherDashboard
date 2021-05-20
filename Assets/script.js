@@ -39,12 +39,12 @@ fetch(apiURL)
     });
 };
  const displayWeather = function(weather, searchCity){
-     weatherContainerEl.textContent=weather;
+     weatherContainerEl.textContent="weather";
      citySearchInputEl.textContent=searchCity;
- }   
+
 
  const currentDate = document.createElement("span")
- currentDate.textContent=" (" + moment(weather.dt.value).format("MMM D, YYY") + ")";
+ currentDate.textContent="(" + moment(weather.dt.value).format("MMM D, YYY") + ")";
  citySearchInputEl.appendChild(currentDate);
 
  const weatherIcon=document.createElement("img")
@@ -76,7 +76,7 @@ const lat = weather.coord.lat;
 const lon = weather.coord.lon;
 getUvIndex(lat,lon)
 
-
+}   
  const getUvIndex = function(lat,lon){
     const apiKey = "c11d14405bcd9fd30076a299dfd239f5"
     const apiURL = `https://api.openweathermap.org/data/2.5/uvi?appid=${apiKey}&lat=${lat}&lon=${lon}`
@@ -198,5 +198,5 @@ getUvIndex(lat,lon)
     }
     
     
-    cityFormEl.addEventListener("submit", formSumbitHandler);
+    cityFormEl.addEventListener("submit", formSubmitHandler);
     pastSearchButtonEl.addEventListener("click", pastSearchHandler);
