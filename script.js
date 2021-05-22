@@ -38,13 +38,15 @@ fetch(apiURL)
     });
 };
  var displayWeather = function(weather, searchCity){
-     weatherContainerEl.textContent="weather";
+     weatherContainerEl.textContent="";
      citySearchInputEl.textContent=searchCity;
 
 
  var currentDate = document.createElement("span")
- currentDate.textContent="(" + moment(weather.dt.value).format("MMM D, YYY") + ")";
- citySearchInputEl.appendChild(currentDate);
+//  currentDate.textContent="(" + moment(weather.dt.value).format("MMM D, YYY") + ")";
+currentDate.textContent="(" + moment(weather.dt.value).add(10, 'days').calendar() + ")";
+
+citySearchInputEl.appendChild(currentDate);
 
  var weatherIcon=document.createElement("img")
  weatherIcon.setAttribute("src", `https://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`)
@@ -52,9 +54,14 @@ fetch(apiURL)
 
  var temperatureEl = document.createElement("span");
 
- temperatureEl.textContent = "Temperature:" + weather.main.temp + "°F";
+ temperatureEl.textContent = "Temperature: " + weather.main.temp + "°F";
 
 temperatureEl.classList="list-group-item"
+
+var windSpeedEl = document.createElement("span");
+windSpeedEl.textContent="Wind Speed: " + weather.wind.speed + " MPH";
+
+windSpeedEl.classList="list-group-item"
 
 var humidityEl = document.createElement("span");
 
@@ -62,14 +69,10 @@ humidityEl.textContent = "Humidity: " + weather.main.humidity + "%";
 
 humidityEl.classList = "list-group-item"
 
-var windSpeedEl = document.createElement("span");
-windSpeedEl.textContent="Wind Speed:" + weather.wind.speed + "MPH";
-
-windSpeedEl.classList="list-group-item"
-
 weatherContainerEl.appendChild(temperatureEl);
-weatherContainerEl.appendChild(humidityEl);
 weatherContainerEl.appendChild(windSpeedEl);
+weatherContainerEl.appendChild(humidityEl);
+
 
 var lat = weather.coord.lat;
 var lon = weather.coord.lon;
@@ -194,30 +197,7 @@ getUvIndex(lat,lon)
     
         pastSearchButtonEl.prepend(pastSearchEl);
     }
-//     var pastSearch = function(pastSearch){
-     
-//     //     // console.log(pastSearch)
-//     pastSearch();
 
-// function pastSearch(){
-//     // Forloop for persisting the data onto HMTL page
-//     for (var i = 0; i < localStorage.length; i++)
-//         pastSearchEl = document.createElement("button");
-//         pastSearchEl.textContent = pastSearch;
-//         pastSearchEl.classList = "d-flex w-100 btn-light border p-2";
-//         pastSearchEl.setAttribute("data-city",pastSearch)
-//         pastSearchEl.setAttribute("type", "submit");
-    
-//         pastSearchButtonEl.prepend(pastSearchEl);
-
-// pastSearchEl = document.createElement("button");
-// pastSearchEl.textContent = localStorage.getItem(i);
-// pastSearchEl.classList = "d-flex w-100 btn-light border p-2";
-// pastSearchEl.setAttribute("data-city",localStorage.getItem(i))
-// pastSearchEl.setAttribute("type", "submit");
-// // pastSearchButtonEl.prepend(pastSearchEl);
-//     }
-    
     
     var pastSearchHandler = function(event){
         var city = event.target.getAttribute("data-city")

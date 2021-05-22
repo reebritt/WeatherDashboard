@@ -8,12 +8,12 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
+    <link rel="stylesheet" href="Assets/style.css">
     <title>Weather Dashboard</title>
 </head>
 
 <body>
-    <header class="bg-dark text-white text-center p-2">
+    <header class="bg-primary text-white text-center p-2">
         <h1>Weather Dashboard</h1>
     </header>
     <main class="container-fluid">
@@ -28,13 +28,13 @@
             </div>
             <div class="col-12 col-md-9">
                 <div class="row border selected city" id="current-forecast">
-                    <div class="col-12">
+                    <div class="col-12 col-md-9">
                         <h3 id="searched-city"></h3>
                         <div id="current-weather-container" class="list-group"></div>
                     </div>
                 </div>
                 <div class="row border" id="five-day-forecast">
-                    <h4 class="col-12" id="forecast"></h4>
+                    <h4 class="col-12 col-md-9 col-md-3" id="forecast"></h4>
                     <div class="d-flex" id="fiveday-container"></div>
                 </div>
             </div>
