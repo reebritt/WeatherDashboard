@@ -155,14 +155,22 @@ getUvIndex(lat,lon)
            //create temperature span
            var forecastTempEl=document.createElement("span");
            forecastTempEl.classList = "card-body text-center";
-           forecastTempEl.textContent = dailyForecast.main.temp + " °F";
+           forecastTempEl.textContent = "Temp " + dailyForecast.main.temp + " °F";
     
             //append to forecast card
             forecastEl.appendChild(forecastTempEl);
+
+            //create temperature span
+           var forecastWindEl=document.createElement("span");
+           forecastWindEl.classList = "card-body text-center";
+           forecastWindEl.textContent = "Wind " + dailyForecast.wind.speed + " MPH";
+    
+            //append to forecast card
+            forecastEl.appendChild(forecastWindEl);
     
            var forecastHumEl=document.createElement("span");
            forecastHumEl.classList = "card-body text-center";
-           forecastHumEl.textContent = dailyForecast.main.humidity + " %";
+           forecastHumEl.textContent = "Humidity " + dailyForecast.main.humidity + " %";
     
            //append to forecast card
            forecastEl.appendChild(forecastHumEl);
@@ -176,12 +184,8 @@ getUvIndex(lat,lon)
     
     var pastSearch = function(pastSearch){
      
-    //     // console.log(pastSearch)
-    pastSearch();
-
-function pastSearch(){
-    // Forloop for persisting the data onto HMTL page
-    for (var i = 0; i < localStorage.length; i++)
+        // console.log(pastSearch)
+    
         pastSearchEl = document.createElement("button");
         pastSearchEl.textContent = pastSearch;
         pastSearchEl.classList = "d-flex w-100 btn-light border p-2";
@@ -189,14 +193,30 @@ function pastSearch(){
         pastSearchEl.setAttribute("type", "submit");
     
         pastSearchButtonEl.prepend(pastSearchEl);
+    }
+//     var pastSearch = function(pastSearch){
+     
+//     //     // console.log(pastSearch)
+//     pastSearch();
+
+// function pastSearch(){
+//     // Forloop for persisting the data onto HMTL page
+//     for (var i = 0; i < localStorage.length; i++)
+//         pastSearchEl = document.createElement("button");
+//         pastSearchEl.textContent = pastSearch;
+//         pastSearchEl.classList = "d-flex w-100 btn-light border p-2";
+//         pastSearchEl.setAttribute("data-city",pastSearch)
+//         pastSearchEl.setAttribute("type", "submit");
+    
+//         pastSearchButtonEl.prepend(pastSearchEl);
 
 // pastSearchEl = document.createElement("button");
 // pastSearchEl.textContent = localStorage.getItem(i);
 // pastSearchEl.classList = "d-flex w-100 btn-light border p-2";
 // pastSearchEl.setAttribute("data-city",localStorage.getItem(i))
 // pastSearchEl.setAttribute("type", "submit");
-// pastSearchButtonEl.prepend(pastSearchEl);
-    }
+// // pastSearchButtonEl.prepend(pastSearchEl);
+//     }
     
     
     var pastSearchHandler = function(event){
@@ -208,6 +228,6 @@ function pastSearch(){
         }
     }
     
-}
+
     cityFormEl.addEventListener("submit", formSubmitHandler);
     pastSearchButtonEl.addEventListener("click", pastSearchHandler);
