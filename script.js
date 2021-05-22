@@ -2,12 +2,11 @@ var cities = [];
 
 var cityFormEl = document.querySelector("#city-search-form");
 var cityInputEl = document.querySelector("#city");
-var pastSearchButtonEl = document.querySelector("past-search-buttons");
-var weatherContainerEl = document.querySelector("current-weather-container");
+var weatherContainerEl = document.querySelector("#current-weather-container");
 var citySearchInputEl = document.querySelector("#searched-city");
 var forecastTitle = document.querySelector("#forecast");
 var forecastContainerEl = document.querySelector("#fiveday-container");
-
+var pastSearchButtonEl = document.querySelector("#past-search-buttons");
 var formSubmitHandler = function(event) {
     event.preventDefault();
     var city = cityInputEl.value.trim();
@@ -119,7 +118,7 @@ getUvIndex(lat,lon)
         fetch(apiURL)
         .then(function(response){
             response.json().then(function(data){
-               display5Day(data);
+               display5Day(data, city);
             });
         });
     };
@@ -136,7 +135,7 @@ getUvIndex(lat,lon)
            var forecastEl=document.createElement("div");
            forecastEl.classList = "card bg-primary text-light m-2";
     
-           //console.log(dailyForecast)
+        
     
            //create date element
            var forecastDate = document.createElement("h5")
@@ -177,8 +176,12 @@ getUvIndex(lat,lon)
     
     var pastSearch = function(pastSearch){
      
-        // console.log(pastSearch)
-    
+    //     // console.log(pastSearch)
+    pastSearch();
+
+function pastSearch(){
+    // Forloop for persisting the data onto HMTL page
+    for (var i = 0; i < localStorage.length; i++)
         pastSearchEl = document.createElement("button");
         pastSearchEl.textContent = pastSearch;
         pastSearchEl.classList = "d-flex w-100 btn-light border p-2";
@@ -186,6 +189,13 @@ getUvIndex(lat,lon)
         pastSearchEl.setAttribute("type", "submit");
     
         pastSearchButtonEl.prepend(pastSearchEl);
+
+// pastSearchEl = document.createElement("button");
+// pastSearchEl.textContent = localStorage.getItem(i);
+// pastSearchEl.classList = "d-flex w-100 btn-light border p-2";
+// pastSearchEl.setAttribute("data-city",localStorage.getItem(i))
+// pastSearchEl.setAttribute("type", "submit");
+// pastSearchButtonEl.prepend(pastSearchEl);
     }
     
     
@@ -194,9 +204,10 @@ getUvIndex(lat,lon)
         if(city){
             getCityWeather(city);
             get5Day(city);
+            // displayWeather(city)
         }
     }
     
-    
+}
     cityFormEl.addEventListener("submit", formSubmitHandler);
     pastSearchButtonEl.addEventListener("click", pastSearchHandler);
